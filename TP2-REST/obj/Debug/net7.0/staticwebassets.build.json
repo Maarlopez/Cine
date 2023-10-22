@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "51aGyS7DnUcxcfsd5xqJi3JAurLRgKWkRz8ZPBmcFIk=",
+  "Source": "TP2-REST",
+  "BasePath": "_content/TP2-REST",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
