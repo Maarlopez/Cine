@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6zICvBG+kVmMnN2rXpqwzLQCruZQo8jHvAH89y6SX3pddgmOmV10fGeHkpZJXuUHycNL7Ya5Nc9q6ZWG9PG+Rg==",
+  "dgSpecHash": "g+ib3Szo5Xg6QCoovDpSHueC4AjHvlVKSwtmv5QHokg2PXWTu4j334x956Ux9xIrIaBcItQkW8wbif7aBBfrog==",
   "success": true,
-  "projectFilePath": "D:\\otros\\TP2-REST\\TP2-REST\\TP2-REST.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Proyecto Software\\Individual\\Cine\\TP2-REST\\TP2-REST.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

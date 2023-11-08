@@ -20,3 +20,14 @@ D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.dll
 D:\otros\TP2-REST\Domain\obj\Debug\net7.0\refint\Domain.dll
 D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.pdb
 D:\otros\TP2-REST\Domain\obj\Debug\net7.0\ref\Domain.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\bin\Debug\net7.0\Domain.deps.json
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\bin\Debug\net7.0\Domain.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\bin\Debug\net7.0\Domain.pdb
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\Domain.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\refint\Domain.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\Domain.pdb
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Domain\obj\Debug\net7.0\ref\Domain.dll

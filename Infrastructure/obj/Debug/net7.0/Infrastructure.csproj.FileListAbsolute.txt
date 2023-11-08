@@ -36,3 +36,22 @@ D:\otros\TP2-REST\Infrastructure\obj\Debug\net7.0\refint\Infrastructure.dll
 D:\otros\TP2-REST\Infrastructure\obj\Debug\net7.0\Infrastructure.pdb
 D:\otros\TP2-REST\Infrastructure\obj\Debug\net7.0\Infrastructure.genruntimeconfig.cache
 D:\otros\TP2-REST\Infrastructure\obj\Debug\net7.0\ref\Infrastructure.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Infrastructure.deps.json
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Infrastructure.runtimeconfig.json
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Infrastructure.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Infrastructure.pdb
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Application.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Domain.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Application.pdb
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\bin\Debug\net7.0\Domain.pdb
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.AssemblyInfo.cs
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.csproj.CopyComplete
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\refint\Infrastructure.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.pdb
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\Infrastructure.genruntimeconfig.cache
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\Infrastructure\obj\Debug\net7.0\ref\Infrastructure.dll

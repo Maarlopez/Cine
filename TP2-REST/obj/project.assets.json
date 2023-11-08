@@ -3363,11 +3363,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\otros\\TP2-REST\\TP2-REST\\TP2-REST.csproj",
+      "projectUniqueName": "C:\\Users\\maria\\Desktop\\Proyecto Software\\Individual\\Cine\\TP2-REST\\TP2-REST.csproj",
       "projectName": "TP2-REST",
-      "projectPath": "D:\\otros\\TP2-REST\\TP2-REST\\TP2-REST.csproj",
+      "projectPath": "C:\\Users\\maria\\Desktop\\Proyecto Software\\Individual\\Cine\\TP2-REST\\TP2-REST.csproj",
       "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-      "outputPath": "D:\\otros\\TP2-REST\\TP2-REST\\obj\\",
+      "outputPath": "C:\\Users\\maria\\Desktop\\Proyecto Software\\Individual\\Cine\\TP2-REST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3384,8 +3384,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\otros\\TP2-REST\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\otros\\TP2-REST\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\maria\\Desktop\\Proyecto Software\\Individual\\Cine\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Proyecto Software\\Individual\\Cine\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -3434,7 +3434,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
