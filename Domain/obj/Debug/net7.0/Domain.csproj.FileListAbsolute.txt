@@ -9,3 +9,14 @@ D:\TP2-REST\Domain\obj\Debug\net7.0\Domain.dll
 D:\TP2-REST\Domain\obj\Debug\net7.0\refint\Domain.dll
 D:\TP2-REST\Domain\obj\Debug\net7.0\Domain.pdb
 D:\TP2-REST\Domain\obj\Debug\net7.0\ref\Domain.dll
+D:\otros\TP2-REST\Domain\bin\Debug\net7.0\Domain.deps.json
+D:\otros\TP2-REST\Domain\bin\Debug\net7.0\Domain.dll
+D:\otros\TP2-REST\Domain\bin\Debug\net7.0\Domain.pdb
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.dll
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\refint\Domain.dll
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\Domain.pdb
+D:\otros\TP2-REST\Domain\obj\Debug\net7.0\ref\Domain.dll

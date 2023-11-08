@@ -1,6 +1,8 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Query
 {
@@ -12,14 +14,20 @@ namespace Infrastructure.Query
         {
             _context = context;
         }
-        public IEnumerable<Generos> GetAll()
-        {
-            return _context.Generos.ToList();
-        }
 
-        public Generos? GetById(int GeneroId)
+        public async Task<List<Generos>> GetGeneros()
         {
-            return _context.Generos.FirstOrDefault(genero => genero.GeneroId == GeneroId);
+            try
+            {
+                List<Generos> todosLosGeneros = await _context.Generos
+                .ToListAsync();
+
+                return todosLosGeneros;
+            }
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("Error en la base de datos: Problema al obtener funciones.");
+            }
         }
     }
 }

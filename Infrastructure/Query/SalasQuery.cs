@@ -1,6 +1,8 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Query
 {
@@ -12,14 +14,16 @@ namespace Infrastructure.Query
         {
             _context = context;
         }
-        public IEnumerable<Salas> GetAll()
+        public async Task<Salas> GetSalaById(int salaId)
         {
-            return _context.Salas;
-        }
+            var sala = await _context.Salas.SingleOrDefaultAsync(s => s.SalaId.Equals(salaId));
 
-        public Salas GetById(int SalaId)
-        {
-            return _context.Salas.FirstOrDefault(sala => sala.SalaId == SalaId);
+            if (sala == null)
+            {
+                throw new NotFoundException($"No se encontró una sala con el Id: {salaId}.");
+            }
+
+            return sala;
         }
     }
 }

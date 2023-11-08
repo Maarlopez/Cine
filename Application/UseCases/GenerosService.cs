@@ -1,30 +1,26 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Domain.Entities;
 
 namespace Application.UseCases
 {
     public class GenerosService : IGenerosService
     {
-        private readonly IGenerosCommand _command;
         private readonly IGenerosQuery _query;
-
-        public GenerosService(IGenerosCommand command, IGenerosQuery query)
+        public GenerosService(IGenerosQuery generoQuery)
         {
-            _command = command;
-            _query = query;
+            _query = generoQuery;
         }
-        public IEnumerable<Generos> GetAll()
+        public async Task<List<Generos>> GetGeneros()
         {
-            return _query.GetAll();
-        }
-
-        public Generos GetById(int generoId)
-        {
-            return _query.GetById(generoId);
-        }
-        public Generos DeleteGenero(int generoId)
-        {
-            return _command.DeleteGenero(generoId);
+            try
+            {
+                return await _query.GetGeneros();
+            }
+            catch (ConflictException ex)
+            {
+                throw new ConflictException("Error: " + ex.Message);
+            }
         }
     }
 }

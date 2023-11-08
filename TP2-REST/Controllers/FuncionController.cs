@@ -12,82 +12,148 @@ namespace TP2_REST.Controllers
     public class FuncionController : ControllerBase
     {
         private readonly IFuncionesService _funcionesService;
+        private readonly ITicketsService _ticketsService;
 
-        public FuncionController(IFuncionesService funcionesService)
+        public FuncionController(IFuncionesService funcionesService, ITicketsService ticketsService)
         {
             _funcionesService = funcionesService;
+            _ticketsService = ticketsService;
         }
+
         [HttpGet]
-        [ProducesResponseType(typeof(FuncionGetResponse), 200)]
+        [ProducesResponseType(typeof(List<FuncionGetResponse>), 200)]
         [ProducesResponseType(typeof(BadRequest), 400)]
-        //[ProducesResponseType(typeof(BadRequest), 404)]
-        public IActionResult GetFuncionesPorFechaTituloYGenero(DateTime fecha, string titulo, string genero)
+        public async Task<IActionResult> GetPeliculaByfilter(string? fecha, string? titulo, int? genero)
         {
-
             try
             {
-                var funciones = _funcionesService.GetFuncionesPorFechaTituloYGenero(fecha, titulo, genero);
-                return Ok(funciones);
+                var result = await _funcionesService.GetFuncionesByTituloFechaOCategoria(titulo, fecha, genero ?? 0);
+                return Ok(result);
             }
-            //catch (PeliculaNotFoundException ex)
-            //{
-            //    return NotFound(ex.Message);
-            //}
-            //catch (GeneroNotFoundException ex)
-            //{
-            //    return NotFound(new BadRequest
-            //    {
-            //        Message = ex.Message
-            //    });
-            //}
-            catch (Exception ex)
+            catch (SyntaxErrorException ex)
             {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(FuncionResponse), 200)]
-        [ProducesResponseType(typeof(BadRequest), 400)]
-        [ProducesResponseType(typeof(BadRequest), 404)]
-        public IActionResult GetById(int id)
-        {
-
-            try
-            {
-                var funciones = _funcionesService.GetById(id);
-                return Ok(funciones);
-            }
-            catch (FuncionNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
             }
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(FuncionResponse), 201)]
         [ProducesResponseType(typeof(BadRequest), 400)]
-        public IActionResult CreateUsuario(FuncionRequest request)
+        [ProducesResponseType(typeof(BadRequest), 409)]
+        public async Task<IActionResult> RegisterFuncion(FuncionRequest request)
         {
-            FuncionResponse result = null;
-
             try
             {
-                result = _funcionesService.RegistrarFuncion(request);
+                var result = await _funcionesService.RegisterFuncion(request);
+                return new JsonResult(result) { StatusCode = 201 };
             }
-            catch (ConflictException e)
+            catch (SyntaxErrorException ex)
             {
-                return new JsonResult(new BadRequest { Message = e.Message }) { StatusCode = 409 };
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
             }
-            catch (Exception)
+            catch (ConflictException ex)
             {
-                return new JsonResult(new BadRequest { Message = "Puede que existan campos invalidos" }) { StatusCode = 400 };
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 409 };
             }
-            return new JsonResult(result);
+        }
+
+        [HttpGet("{Id}")]
+        [ProducesResponseType(typeof(FuncionResponse), 200)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 404)]
+        public async Task<IActionResult> GetFuncionById(int Id)
+        {
+            try
+            {
+                var result = await _funcionesService.GetFuncionResponseById(Id);
+                return new JsonResult(result) { StatusCode = 200 };
+            }
+            catch (SyntaxErrorException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
+            catch (NotFoundException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
+            }
+
+        }
+
+        [HttpDelete("{Id}")]
+        [ProducesResponseType(typeof(FuncionDelete), 200)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 404)]
+        [ProducesResponseType(typeof(BadRequest), 409)]
+        public async Task<IActionResult> DeleteFuncion(int Id)
+        {
+            try
+            {
+                var result = await _funcionesService.DeleteFuncion(Id);
+                return new JsonResult(result) { StatusCode = 200 };
+            }
+            catch (SyntaxErrorException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
+            catch (NotFoundException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
+            }
+            catch (ConflictException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 409 };
+            }
+        }
+
+        [HttpGet("{Id}/tickets")]
+        [ProducesResponseType(typeof(CantidadTicketsResponse), 200)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 404)]
+        public async Task<IActionResult> GetTicketById(int Id)
+        {
+            try
+            {
+                var result = await _funcionesService.GetCantidadTickets(Id);
+                return new JsonResult(result) { StatusCode = 200 };
+            }
+            catch (SyntaxErrorException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
+            catch (NotFoundException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
+            }
+        }
+
+        [HttpPost("{Id}/tickets")]
+        [ProducesResponseType(typeof(TicketResponse), 201)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 404)]
+        [ProducesResponseType(typeof(BadRequest), 409)]
+        public async Task<IActionResult> RegisterTicket(int Id, TicketsRequest request)
+        {
+            try
+            {
+                var result = await _ticketsService.createTicket(Id, request);
+                return new JsonResult(result) { StatusCode = 201 };
+            }
+            catch (SyntaxErrorException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
+            catch (BadRequestException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
+            catch (NotFoundException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
+            }
+            catch (ConflictException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 409 };
+            }
         }
     }
 }

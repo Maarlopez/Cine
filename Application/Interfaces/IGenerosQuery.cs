@@ -4,7 +4,6 @@ namespace Application.Interfaces
 {
     public interface IGenerosQuery
     {
-        IEnumerable<Generos> GetAll();
-        Generos? GetById(int generoId);
+        Task<List<Generos>> GetGeneros();
     }
 }

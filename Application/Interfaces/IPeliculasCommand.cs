@@ -1,9 +1,10 @@
-﻿using Domain.Entities;
+﻿using Application.Request;
+using Domain.Entities;
 
 namespace Application.Interfaces
 {
     public interface IPeliculasCommand
     {
-        Peliculas DeletePelicula(int peliculaId);
+        Task<Peliculas> UpdatePelicula(int peliculaId, PeliculaRequest pelicula);
     }
 }

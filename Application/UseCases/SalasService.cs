@@ -5,36 +5,19 @@ namespace Application.UseCases
 {
     public class SalasService : ISalasService
     {
-        private readonly ISalasCommand _command;
         private readonly ISalasQuery _query;
 
-        public SalasService(ISalasCommand command, ISalasQuery query)
+        public SalasService(ISalasQuery salaQuery)
         {
-            _command = command;
-            _query = query;
+            _query = salaQuery;
         }
-
-        public IEnumerable<Salas> GetAll()
+        public async Task<bool> SalaExists(int salaId)
         {
-            return _query.GetAll();
+            return await GetSalaById(salaId) != null;
         }
-
-        public Salas GetById(int salaId)
+        public async Task<Salas> GetSalaById(int salaId)
         {
-            return _query.GetById(salaId);
-        }
-        public Salas DeleteSala(int salaId)
-        {
-            return _command.DeleteSala(salaId);
-        }
-        public int GetMinId()
-        {
-            return _query.GetAll().Min(s => s.SalaId);
-        }
-
-        public int GetMaxId()
-        {
-            return _query.GetAll().Max(s => s.SalaId);
+            return await _query.GetSalaById(salaId);
         }
     }
 }

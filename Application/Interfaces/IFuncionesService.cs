@@ -1,14 +1,16 @@
 ﻿using Application.Request;
 using Application.Response;
+using Domain.Entities;
 
 namespace Application.Interfaces
 {
     public interface IFuncionesService
     {
-        IEnumerable<FuncionGetResponse> GetAll();
-        FuncionResponse GetById(int funcionId);
-        List<FuncionGetResponse> GetFuncionesPorFechaTituloYGenero(DateTime fecha, string titulo, string genero);
-        FuncionResponse RegistrarFuncion(FuncionRequest request);
-        //FuncionDelete DeleteFuncion(int funcionId);
+        Task<FuncionResponse> RegisterFuncion(FuncionRequest request);
+        Task<List<FuncionGetResponse>> GetFuncionesByTituloFechaOCategoria(string titulo, string fecha, int categoria);
+        Task<Funciones> GetFuncionById(int funcionId);
+        Task<FuncionResponse> GetFuncionResponseById(int funcionId);
+        Task<FuncionDelete> DeleteFuncion(int funcionId);
+        Task<CantidadTicketsResponse> GetCantidadTickets(int funcionId);
     }
 }

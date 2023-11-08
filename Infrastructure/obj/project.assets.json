@@ -2924,11 +2924,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TP2-REST\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "D:\\otros\\TP2-REST\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "D:\\TP2-REST\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "D:\\otros\\TP2-REST\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-      "outputPath": "D:\\TP2-REST\\Infrastructure\\obj\\",
+      "outputPath": "D:\\otros\\TP2-REST\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2945,8 +2945,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\TP2-REST\\Application\\Application.csproj": {
-              "projectPath": "D:\\TP2-REST\\Application\\Application.csproj"
+            "D:\\otros\\TP2-REST\\Application\\Application.csproj": {
+              "projectPath": "D:\\otros\\TP2-REST\\Application\\Application.csproj"
             }
           }
         }

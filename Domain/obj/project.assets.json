@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TP2-REST\\Domain\\Domain.csproj",
+      "projectUniqueName": "D:\\otros\\TP2-REST\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "D:\\TP2-REST\\Domain\\Domain.csproj",
+      "projectPath": "D:\\otros\\TP2-REST\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-      "outputPath": "D:\\TP2-REST\\Domain\\obj\\",
+      "outputPath": "D:\\otros\\TP2-REST\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",

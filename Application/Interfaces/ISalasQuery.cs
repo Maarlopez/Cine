@@ -4,7 +4,6 @@ namespace Application.Interfaces
 {
     public interface ISalasQuery
     {
-        IEnumerable<Salas> GetAll();
-        Salas GetById(int salaId);
+        public Task<Salas> GetSalaById(int salaId);
     }
 }

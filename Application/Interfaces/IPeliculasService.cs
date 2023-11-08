@@ -1,14 +1,11 @@
-﻿using Domain.Entities;
+﻿using Application.Request;
+using Application.Response;
 
 namespace Application.Interfaces
 {
     public interface IPeliculasService
     {
-        IEnumerable<Peliculas> GetAll();
-        Peliculas GetById(int peliculaId);
-        Peliculas GetByTitulo(string titulo);
-        Peliculas DeletePelicula(int peliculaId);
-        int GetMinId();
-        int GetMaxId();
+        public Task<PeliculaResponse> GetPeliculaById(int peliculaId);
+        public Task<PeliculaResponse> UpdatePelicula(int peliculaId, PeliculaRequest request);
     }
 }

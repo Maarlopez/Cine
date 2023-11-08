@@ -1,6 +1,4 @@
-﻿using Domain.DTO;
-
-namespace Application.Response
+﻿namespace Application.Response
 {
     public class FuncionResponse
     {
@@ -8,6 +6,6 @@ namespace Application.Response
         public PeliculaGetResponse Pelicula { get; set; }
         public Sala Sala { get; set; }
         public DateTime Fecha { get; set; }
-        public string? Horario { get; set; }
+        public string Horario { get; set; }
     }
 }

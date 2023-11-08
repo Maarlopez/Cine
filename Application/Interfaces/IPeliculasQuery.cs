@@ -4,8 +4,7 @@ namespace Application.Interfaces
 {
     public interface IPeliculasQuery
     {
-        IEnumerable<Peliculas> GetAll();
-        Peliculas GetById(int peliculaId);
-        Peliculas GetByTitulo(string titulo);
+        Task<Peliculas> GetPeliculaById(int peliculaId);
+        Task<List<Peliculas>> GetPeliculas();
     }
 }

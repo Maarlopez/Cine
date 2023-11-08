@@ -1,6 +1,9 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
+using Application.Request;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Command
 {
@@ -8,23 +11,33 @@ namespace Infrastructure.Command
     {
         private readonly CineContext _context;
 
-        private readonly IPeliculasQuery _query;
-
         public PeliculasCommand(CineContext context)
         {
             _context = context;
         }
 
-        public Peliculas DeletePelicula(int peliculaId)
+        public async Task<Peliculas> UpdatePelicula(int peliculaId, PeliculaRequest request)
         {
-            Peliculas delete = _query.GetById(peliculaId);
-
-            if (delete != null)
+            try
             {
-                _context.Remove(delete);
-                _context.SaveChanges();
+                var peliculaToUpdate = await _context.Peliculas.FirstOrDefaultAsync(p => p.PeliculaId == peliculaId);
+
+                if (peliculaToUpdate == null)
+                {
+                    throw new NotFoundException($"No se encontró una película con el Id: {peliculaId}");
+                }
+
+                peliculaToUpdate.Titulo = request.Titulo;
+                peliculaToUpdate.Trailer = request.Trailer;
+                peliculaToUpdate.Sinopsis = request.Sinopsis;
+                peliculaToUpdate.GeneroId = request.Genero;
+                await _context.SaveChangesAsync();
+                return peliculaToUpdate;
             }
-            return delete;
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("Hubo un error en la base de datos");
+            }
         }
     }
 }

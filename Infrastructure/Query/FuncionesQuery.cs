@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -13,58 +14,98 @@ namespace Infrastructure.Query
         {
             _context = context;
         }
-
-        public IEnumerable<Funciones> GetAll()
+        public async Task<List<Funciones>> GetFuncionesByFecha(DateTime fecha)
         {
-            return _context.Funciones
-                .Include(f => f.Pelicula)
-                .Include(f => f.Sala)
-                .Include(f => f.Tickets);
+            try
+            {
+                List<Funciones> FuncionesPorFecha = await _context.Funciones
+                    .Include(f => f.Pelicula)
+                    .Include(f => f.Pelicula.Genero)
+                    .Include(f => f.Sala)
+                    .Where(f => f.Fecha.Date == fecha.Date)
+                    .ToListAsync();
+                return FuncionesPorFecha;
+            }
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("Error en la base de datos: Problema con la fecha.");
+            }
         }
 
-        public Funciones GetById(int funcionId)
+        public async Task<List<Funciones>> GetFuncionesByTitulo(string titulo)
         {
-            var funcion = _context.Funciones
-                .Include(f => f.Pelicula)
+            try
+            {
+                List<Funciones> FuncionesPorTitulo = await _context.Funciones
+               .Include(p => p.Pelicula)
+               .Include(f => f.Pelicula.Genero)
+               .Include(f => f.Sala)
+               .Where(p => p.Pelicula.Titulo.Contains(titulo))
+               .ToListAsync();
+                return FuncionesPorTitulo;
+            }
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("Error en la base de datos: Problema con el titulo.");
+            }
+        }
+        public async Task<List<Funciones>> GetFunciones()
+        {
+            try
+            {
+                List<Funciones> funciones = await _context.Funciones
                 .Include(f => f.Sala)
+                .Include(f => f.Pelicula)
+                .Include(f => f.Pelicula.Genero)
                 .Include(f => f.Tickets)
-                .FirstOrDefault(f => f.FuncionId == funcionId);
+                .ToListAsync();
 
-            return funcion;
+                return funciones;
+            }
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("Error en la base de datos: Problema al obtener funciones");
+            }
         }
-        public List<Funciones> GetFuncionesPorFechaTituloYGenero(DateTime fecha, string titulo, string genero)
+        public async Task<Funciones> GetFuncionById(int id)
         {
-            // Verificar si el género existe
-            var generoExists = _context.Generos.Any(g => g.Nombre == genero);
-            if (!generoExists)
+            try
             {
-                throw new Exception("El género no existe.");
-            }
+                var funcion = await _context.Funciones
+                    .Include(f => f.Sala)
+                    .Include(f => f.Pelicula)
+                    .Include(f => f.Pelicula.Genero)
+                    .Include(f => f.Tickets)
+                    .SingleOrDefaultAsync(f => f.FuncionId == id);
 
-            // Verificar si el título de la película existe
-            var peliculaExists = _context.Peliculas.Any(p => p.Titulo == titulo);
-            if (!peliculaExists)
+                if (funcion == null)
+                {
+                    throw new NotFoundException($"No se encontró una función con el Id: {id}");
+                }
+
+                return funcion;
+            }
+            catch (DbUpdateException)
             {
-                throw new Exception("La película no existe.");
+                throw new ConflictException("Error en la base de datos: Problema al obtener una función.");
             }
-
-            // Consulta base para obtener Funciones
-            var query = _context.Funciones
-                        .Include(f => f.Pelicula)
-                        .Include(f => f.Sala)
-                        .Include(f => f.Tickets)
-                        .Where(f => f.Pelicula.Titulo == titulo && f.Pelicula.Genero.Nombre == genero);
-
-            // Si se proporciona una fecha que no es el valor mínimo, filtrar por ella
-            if (fecha != DateTime.MinValue)
+        }
+        public async Task<List<Funciones>> GetFuncionByCategoria(int categoriaId)
+        {
+            try
             {
-                query = query.Where(f => f.Fecha == fecha);
+                List<Funciones> funcionesPorCategoria = await _context.Funciones
+               .Include(p => p.Pelicula)
+               .Include(f => f.Pelicula.Genero)
+               .Include(f => f.Sala)
+               .Where(p => p.Pelicula.GeneroId == categoriaId)
+               .ToListAsync();
+                return funcionesPorCategoria;
             }
-
-            // Ejecutar la consulta y retornar los resultados
-            var funcionesList = query.ToList();
-
-            return funcionesList;
+            catch (DbUpdateException)
+            {
+                throw new ConflictException("Error en la base de datos: Problema con el titulo.");
+            }
         }
     }
 }

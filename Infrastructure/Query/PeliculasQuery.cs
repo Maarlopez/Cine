@@ -1,6 +1,8 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 public class PeliculasQuery : IPeliculasQuery
 {
@@ -10,18 +12,43 @@ public class PeliculasQuery : IPeliculasQuery
     {
         _context = context;
     }
-    public IEnumerable<Peliculas> GetAll()
+
+    public async Task<Peliculas> GetPeliculaById(int peliculaId)
     {
-        return _context.Peliculas;
+        try
+        {
+            var pelicula = await _context.Peliculas
+                        .Include(p => p.Genero)
+                        .Include(p => p.Funciones)
+                        .SingleOrDefaultAsync(p => p.PeliculaId == peliculaId);
+
+            if (pelicula == null)
+            {
+                throw new NotFoundException($"No se encontró una película con el Id: {peliculaId}.");
+            }
+
+            return pelicula;
+        }
+        catch (DbUpdateException)
+        {
+            throw new ConflictException("Error en la base de datos: Problema al obtener las películas.");
+        }
     }
 
-    public Peliculas GetById(int PeliculaId)
+    public async Task<List<Peliculas>> GetPeliculas()
     {
-        return _context.Peliculas.FirstOrDefault(p => p.PeliculaId == PeliculaId);
-    }
+        try
+        {
+            List<Peliculas> todasLasFunciones = await _context.Peliculas
+            .Include(p => p.Genero)
+            .Include(p => p.Funciones)
+            .ToListAsync();
 
-    public Peliculas GetByTitulo(string Titulo)
-    {
-        return _context.Peliculas.FirstOrDefault(p => p.Titulo == Titulo);
+            return todasLasFunciones;
+        }
+        catch (DbUpdateException)
+        {
+            throw new ConflictException("Error en la base de datos: Problema al obtener las películas.");
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace Application.Interfaces
 {
     public interface IFuncionesCommand
     {
-        Funciones RegistrarFuncion(int peliculaId, int salaId, DateTime fecha, TimeSpan horario);
-        //Funciones DeleteFuncion(int funcionId);
+        Task<int> InsertFuncion(Funciones funcion);
+        Task<Funciones> DeleteFuncion(Funciones funcion);
     }
 }

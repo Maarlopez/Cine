@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TP2-REST\\Application\\Application.csproj": {}
+    "D:\\otros\\TP2-REST\\Application\\Application.csproj": {}
   },
   "projects": {
-    "D:\\TP2-REST\\Application\\Application.csproj": {
+    "D:\\otros\\TP2-REST\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TP2-REST\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\otros\\TP2-REST\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\TP2-REST\\Application\\Application.csproj",
+        "projectPath": "D:\\otros\\TP2-REST\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-        "outputPath": "D:\\TP2-REST\\Application\\obj\\",
+        "outputPath": "D:\\otros\\TP2-REST\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\TP2-REST\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\TP2-REST\\Domain\\Domain.csproj"
+              "D:\\otros\\TP2-REST\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\otros\\TP2-REST\\Domain\\Domain.csproj"
               }
             }
           }
@@ -63,14 +63,14 @@
         }
       }
     },
-    "D:\\TP2-REST\\Domain\\Domain.csproj": {
+    "D:\\otros\\TP2-REST\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TP2-REST\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\otros\\TP2-REST\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\TP2-REST\\Domain\\Domain.csproj",
+        "projectPath": "D:\\otros\\TP2-REST\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-        "outputPath": "D:\\TP2-REST\\Domain\\obj\\",
+        "outputPath": "D:\\otros\\TP2-REST\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",

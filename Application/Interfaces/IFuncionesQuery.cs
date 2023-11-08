@@ -4,8 +4,10 @@ namespace Application.Interfaces
 {
     public interface IFuncionesQuery
     {
-        IEnumerable<Funciones> GetAll();
-        Funciones GetById(int funcionId);
-        List<Funciones> GetFuncionesPorFechaTituloYGenero(DateTime fecha, string titulo, string genero);
+        Task<Funciones> GetFuncionById(int id);
+        Task<List<Funciones>> GetFunciones();
+        Task<List<Funciones>> GetFuncionByCategoria(int categoria);
+        Task<List<Funciones>> GetFuncionesByTitulo(string titulo);
+        Task<List<Funciones>> GetFuncionesByFecha(DateTime fecha);
     }
 }
