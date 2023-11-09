@@ -55,7 +55,12 @@ namespace TP2_REST.Controllers
             {
                 return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 409 };
             }
+            catch (InvalidOperationException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
         }
+
 
         [HttpGet("{Id}")]
         [ProducesResponseType(typeof(FuncionResponse), 200)]

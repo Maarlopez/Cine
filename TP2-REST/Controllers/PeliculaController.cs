@@ -45,7 +45,7 @@ namespace TP2_REST.Controllers
         /// </summary>
         /// <param name="Id">El identificador de la pelicula</param>
         /// <returns>Película actualizada</returns>
-        [HttpPut("{Id}")]
+        [HttpPatch("{Id}")]
         [ProducesResponseType(typeof(PeliculaResponse), 200)]
         [ProducesResponseType(typeof(BadRequest), 400)]
         [ProducesResponseType(typeof(BadRequest), 404)]

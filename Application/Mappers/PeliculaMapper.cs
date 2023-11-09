@@ -16,27 +16,48 @@ namespace Application.Mappers
 
         public async Task<PeliculaGetResponse> GeneratePeliculaGetResponse(Peliculas pelicula)
         {
-            var result = new PeliculaGetResponse
+            var peliculaGetResponse = new PeliculaGetResponse
             {
                 PeliculaId = pelicula.PeliculaId,
-                Titulo = pelicula.Titulo,
-                Poster = pelicula.Poster,
                 Genero = await _generoMapper.GetGeneroMapper(pelicula.Genero)
             };
-            return await Task.FromResult(result);
+
+            if (!string.IsNullOrWhiteSpace(pelicula.Poster))
+            {
+                peliculaGetResponse.Poster = pelicula.Poster;
+            }
+            if (!string.IsNullOrWhiteSpace(pelicula.Titulo))
+            {
+                peliculaGetResponse.Titulo = pelicula.Titulo;
+            }
+            return peliculaGetResponse;
         }
+
         public async Task<PeliculaResponse> GeneratePeliculaResponse(Peliculas pelicula)
         {
-            return new PeliculaResponse
+            var peliculaResponse = new PeliculaResponse
             {
                 PeliculaId = pelicula.PeliculaId,
                 Titulo = pelicula.Titulo,
-                Sinopsis = pelicula.Sinopsis,
-                Poster = pelicula.Poster,
-                Trailer = pelicula.Trailer,
                 Genero = await _generoMapper.GetGeneroMapper(pelicula.Genero),
                 Funciones = await GenerateDeleteFunciones(pelicula.Funciones),
             };
+
+            // Añade condicionalmente campos si no están vacíos o nulos
+            if (!string.IsNullOrWhiteSpace(pelicula.Sinopsis))
+            {
+                peliculaResponse.Sinopsis = pelicula.Sinopsis;
+            }
+            if (!string.IsNullOrWhiteSpace(pelicula.Poster))
+            {
+                peliculaResponse.Poster = pelicula.Poster;
+            }
+            if (!string.IsNullOrWhiteSpace(pelicula.Trailer))
+            {
+                peliculaResponse.Trailer = pelicula.Trailer;
+            }
+
+            return peliculaResponse;
         }
 
         private async Task<FuncionDelete> GenerateFuncionDelete(Funciones funcion)
