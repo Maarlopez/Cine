@@ -25,7 +25,9 @@ namespace Application.UseCases
         {
             try
             {
-                if (!VerifyInt(peliculaId)) { throw new SyntaxErrorException(); }
+                if (!VerifyInt(peliculaId)) { 
+                    throw new SyntaxErrorException(); 
+                }
                 Peliculas pelicula = await _query.GetPeliculaById(peliculaId);
                 if (pelicula != null)
                 {
@@ -62,6 +64,10 @@ namespace Application.UseCases
                     {
                         throw new ConflictException("Ya existe una película con ese nombre.");
                     }
+                    if (await VerifySameName(request.Titulo, peliculaId))
+                    {
+                        throw new ConflictException("Ya existe una película con ese nombre.");
+                    }
                     if (!await VerifyGenero(request.Genero))
                     {
                         throw new NotFoundException("No existe ningún género con ese Id.");
@@ -94,7 +100,18 @@ namespace Application.UseCases
 
         private bool VerifyInt(int entero)
         {
-            return int.TryParse(entero.ToString(), out entero);
+            // Convertimos el entero a string y luego comprobamos que no tenga espacios
+            var enteroString = entero.ToString();
+            if (string.IsNullOrWhiteSpace(enteroString) || enteroString.Any(char.IsWhiteSpace))
+            {
+                throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
+            }
+            // Si no es un número o contiene caracteres no deseados, retornamos false
+            if (!int.TryParse(enteroString, out _) || enteroString.Any(ch => !char.IsDigit(ch)))
+            {
+                throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
+            }
+            return true;
         }
 
         private async Task<bool> VerifySameName(string tituloPelicula, int peliculaId)
