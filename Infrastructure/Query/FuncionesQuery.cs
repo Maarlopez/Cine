@@ -90,17 +90,17 @@ namespace Infrastructure.Query
                 throw new ConflictException("Error en la base de datos: Problema al obtener una función.");
             }
         }
-        public async Task<List<Funciones>> GetFuncionByCategoria(int categoriaId)
+        public async Task<List<Funciones>> GetFuncionByGenero(int generoId)
         {
             try
             {
-                List<Funciones> funcionesPorCategoria = await _context.Funciones
+                List<Funciones> funcionesPorGenero = await _context.Funciones
                .Include(p => p.Pelicula)
                .Include(f => f.Pelicula.Genero)
                .Include(f => f.Sala)
-               .Where(p => p.Pelicula.GeneroId == categoriaId)
+               .Where(p => p.Pelicula.GeneroId == generoId)
                .ToListAsync();
-                return funcionesPorCategoria;
+                return funcionesPorGenero;
             }
             catch (DbUpdateException)
             {

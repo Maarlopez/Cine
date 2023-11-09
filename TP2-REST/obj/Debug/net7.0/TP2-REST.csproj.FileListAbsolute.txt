@@ -244,3 +244,5 @@ C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\TP2-REST\obj\Debug\net7
 C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\TP2-REST\obj\Debug\net7.0\TP2-REST.pdb
 C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\TP2-REST\obj\Debug\net7.0\TP2-REST.genruntimeconfig.cache
 C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\TP2-REST\obj\Debug\net7.0\ref\TP2-REST.dll
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\TP2-REST\bin\Debug\net7.0\TP2-REST.xml
+C:\Users\maria\Desktop\Proyecto Software\Individual\Cine\TP2-REST\obj\Debug\net7.0\TP2-REST.xml

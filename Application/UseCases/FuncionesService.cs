@@ -40,6 +40,11 @@ namespace Application.UseCases
                 throw new SalaNotFoundException("No existe la sala.");
             }
 
+            if (!DateTime.TryParse(request.Fecha, out DateTime date))
+            {
+                throw new SyntaxErrorException("Formato érroneo para la fecha, pruebe ingresando dd/mm/aaaa");
+            }
+
             // Validación de formato de horario y rango de horas
             if (!TimeSpan.TryParse(request.Horario, out TimeSpan tiempo) || tiempo.TotalHours >= 24)
             {
@@ -47,13 +52,13 @@ namespace Application.UseCases
             }
 
             // Validación de superposición de funciones en la misma sala
-            if (!await VerifyIfSalaisEmpty(request.Fecha, tiempo, request.Sala))
+            if (!await VerifyIfSalaisEmpty(DateTime.Parse(request.Fecha), tiempo, request.Sala))
             {
                 throw new ConflictException("La sala ya está ocupada en esa fecha y horario.");
             }
 
             // Validación de fecha no anterior al día actual
-            if (request.Fecha.Date < DateTime.Now.Date)
+            if (DateTime.Parse(request.Fecha) < DateTime.Now.Date)
             {
                 throw new InvalidOperationException("No se puede registrar funciones con fechas anteriores al día actual.");
             }
@@ -62,7 +67,7 @@ namespace Application.UseCases
             {
                 PeliculaId = request.Pelicula,
                 SalaId = request.Sala,
-                Fecha = request.Fecha,
+                Fecha = date,
                 Horario = tiempo,
                 Tickets = new List<Tickets>(),
             };
@@ -110,7 +115,7 @@ namespace Application.UseCases
             }
         }
 
-        public async Task<List<FuncionGetResponse>> GetFuncionesByTituloFechaOCategoria(string? titulo, string? fecha, int categoria)
+        public async Task<List<FuncionGetResponse>> GetFuncionesByTituloFechaOGenero(string? titulo, string? fecha, int genero)
         {
             try
             {
@@ -118,9 +123,9 @@ namespace Application.UseCases
                 List<Funciones> funcionesByFecha = new();
                 List<Funciones> funcionesByTitulo = new();
                 List<Funciones> listFunciones = new();
-                List<Funciones> funcionesByCategoria = new();
+                List<Funciones> funcionesByGenero = new();
 
-                if (titulo == null && fecha == null && categoria == 0)
+                if (titulo == null && fecha == null && genero == 0)
                 {
                     listFunciones = await _query.GetFunciones();
                 }
@@ -146,16 +151,16 @@ namespace Application.UseCases
                     else
                     { listFunciones = funcionesByTitulo; }
                 }
-                if (categoria != 0)
+                if (genero != 0)
                 {
-                    funcionesByCategoria = await _query.GetFuncionByCategoria(categoria);
+                    funcionesByGenero = await _query.GetFuncionByGenero(genero);
                     if (listFunciones.Count() > 0)
                     {
-                        listFunciones = GroupData(listFunciones, funcionesByCategoria);
+                        listFunciones = GroupData(listFunciones, funcionesByGenero);
                     }
                     else
                     {
-                        listFunciones = funcionesByCategoria;
+                        listFunciones = funcionesByGenero;
                     }
 
                 }

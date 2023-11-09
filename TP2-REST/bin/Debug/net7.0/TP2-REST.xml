@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TP2-REST</name>
+    </assembly>
+    <members>
+        <member name="M:TP2_REST.Controllers.FuncionController.GetTicketById(System.Int32)">
+            <summary>
+            Permite visualizar la cantidad de tickets disponibles para una función.
+            </summary>
+            <param name="Id">El identificador de la función</param>
+            <returns>Una lista de tickets disponibles</returns>
+        </member>
+        <member name="M:TP2_REST.Controllers.PeliculaController.UpdatePeliculaById(System.Int32,Application.Request.PeliculaRequest)">
+            <summary>
+            Permite actualizar la información de una película.
+            </summary>
+            <param name="Id">El identificador de la pelicula</param>
+            <returns>Película actualizada</returns>
+        </member>
+    </members>
+</doc>

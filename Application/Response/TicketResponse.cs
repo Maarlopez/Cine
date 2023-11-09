@@ -2,7 +2,7 @@
 {
     public class TicketResponse
     {
-        public List<TicketItemReponse> Tickets { get; set; } = new List<TicketItemReponse>();
+        public List<TicketItemResponse> Tickets { get; set; } = new List<TicketItemResponse>();
         public FuncionGetResponse Funcion { get; set; }
         public string? Usuario { get; set; }
     }

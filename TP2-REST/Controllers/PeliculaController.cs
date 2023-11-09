@@ -40,16 +40,21 @@ namespace TP2_REST.Controllers
 
         }
 
+        /// <summary>
+        /// Permite actualizar la información de una película.
+        /// </summary>
+        /// <param name="Id">El identificador de la pelicula</param>
+        /// <returns>Película actualizada</returns>
         [HttpPut("{Id}")]
         [ProducesResponseType(typeof(PeliculaResponse), 200)]
         [ProducesResponseType(typeof(BadRequest), 400)]
         [ProducesResponseType(typeof(BadRequest), 404)]
         [ProducesResponseType(typeof(BadRequest), 409)]
-        public async Task<IActionResult> UpdatePeliculaById(int Id, PeliculaRequest peliculaRequest)
+        public async Task<IActionResult> UpdatePeliculaById(int Id, PeliculaRequest request)
         {
             try
             {
-                var result = await _service.UpdatePelicula(Id, peliculaRequest);
+                var result = await _service.UpdatePelicula(Id, request);
                 return new JsonResult(result) { StatusCode = 200 };
             }
             catch (SyntaxErrorException ex)

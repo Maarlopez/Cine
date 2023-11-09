@@ -27,7 +27,7 @@ namespace TP2_REST.Controllers
         {
             try
             {
-                var result = await _funcionesService.GetFuncionesByTituloFechaOCategoria(titulo, fecha, genero ?? 0);
+                var result = await _funcionesService.GetFuncionesByTituloFechaOGenero(titulo, fecha, genero ?? 0);
                 return Ok(result);
             }
             catch (SyntaxErrorException ex)
@@ -105,6 +105,12 @@ namespace TP2_REST.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Permite visualizar la cantidad de tickets disponibles para una función.
+        /// </summary>
+        /// <param name="Id">El identificador de la función</param>
+        /// <returns>Una lista de tickets disponibles</returns>
         [HttpGet("{Id}/tickets")]
         [ProducesResponseType(typeof(CantidadTicketsResponse), 200)]
         [ProducesResponseType(typeof(BadRequest), 400)]

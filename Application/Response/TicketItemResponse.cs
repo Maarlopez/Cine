@@ -1,6 +1,6 @@
 ﻿namespace Application.Response
 {
-    public class TicketItemReponse
+    public class TicketItemResponse
     {
         public Guid TicketId { get; set; }
     }

@@ -1,3 +1,4 @@
+using System.Reflection;
 using Application.IMappers;
 using Application.Interfaces;
 using Application.Mappers;
@@ -56,6 +57,13 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+builder.Services.AddSwaggerGen(c =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 

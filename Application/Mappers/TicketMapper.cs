@@ -17,9 +17,11 @@ namespace Application.Mappers
 
         public async Task<TicketResponse> GenerateTicketResponse(Tickets ticket, List<Guid> listaIds)
         {
+            List<TicketItemResponse> ticketItems = listaIds.Select(id => new TicketItemResponse { TicketId = id }).ToList();
+
             return new TicketResponse
             {
-                //Tickets = listaIds,
+                Tickets = ticketItems,
                 Funcion = new FuncionGetResponse
                 {
                     FuncionId = ticket.Funcion.FuncionId,
@@ -28,7 +30,7 @@ namespace Application.Mappers
                     Fecha = ticket.Funcion.Fecha,
                     Horario = ticket.Funcion.Horario.ToString("hh\\:mm")
                 },
-                Usuario = ticket.Usuario,
+                Usuario = ticket.Usuario
             };
         }
 
