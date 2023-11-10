@@ -20,35 +20,18 @@ namespace Infrastructure.Command
         {
             try
             {
-                var peliculaToUpdate = await _context.Peliculas
-                                                     .Include(p => p.Genero)
-                                                     .FirstOrDefaultAsync(p => p.PeliculaId == peliculaId);
+                var peliculaToUpdate = await _context.Peliculas.FirstOrDefaultAsync(p => p.PeliculaId == peliculaId);
 
                 if (peliculaToUpdate == null)
                 {
                     throw new NotFoundException($"No se encontró una película con el Id: {peliculaId}");
                 }
 
-                // Verificar que el título no cambie si es el mismo que el original o si ya existe en otra película
-                if (!string.IsNullOrEmpty(request.Titulo) && request.Titulo != peliculaToUpdate.Titulo)
-                {
-                    if (await _context.Peliculas.AnyAsync(p => p.Titulo == request.Titulo && p.PeliculaId != peliculaId))
-                    {
-                        throw new ConflictException("Ya existe una película con ese nombre.");
-                    }
-                    peliculaToUpdate.Titulo = request.Titulo;
-                }
-
-                // Actualiza solo los campos que no son null o no están vacíos en la solicitud PATCH
-                peliculaToUpdate.Trailer = !string.IsNullOrEmpty(request.Trailer) ? request.Trailer : peliculaToUpdate.Trailer;
-                peliculaToUpdate.Sinopsis = !string.IsNullOrEmpty(request.Sinopsis) ? request.Sinopsis : peliculaToUpdate.Sinopsis;
-
-                // Actualiza el género solo si se ha proporcionado un valor válido (mayor que 0)
-                if (request.Genero.HasValue && request.Genero.Value > 0)
-                {
-                    peliculaToUpdate.GeneroId = request.Genero.Value;
-                }
-
+                peliculaToUpdate.Titulo = request.Titulo;
+                peliculaToUpdate.Trailer = request.Trailer;
+                peliculaToUpdate.Poster = request.Poster;
+                peliculaToUpdate.Sinopsis = request.Sinopsis;
+                peliculaToUpdate.GeneroId = request.Genero;
                 await _context.SaveChangesAsync();
                 return peliculaToUpdate;
             }

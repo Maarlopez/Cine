@@ -37,6 +37,5 @@ namespace Infrastructure.Query
                 throw new SyntaxErrorException("Error en la base de datos: Problema con el ticket.");
             }
         }
-
     }
 }

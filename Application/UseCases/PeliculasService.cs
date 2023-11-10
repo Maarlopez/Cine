@@ -25,8 +25,9 @@ namespace Application.UseCases
         {
             try
             {
-                if (!VerifyInt(peliculaId)) { 
-                    throw new SyntaxErrorException(); 
+                if (!VerifyInt(peliculaId))
+                {
+                    throw new SyntaxErrorException();
                 }
                 Peliculas pelicula = await _query.GetPeliculaById(peliculaId);
                 if (pelicula != null)
@@ -56,34 +57,26 @@ namespace Application.UseCases
                 {
                     throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
                 }
-
-                // Convertimos el primer carácter del título a mayúscula.
                 request.Titulo = char.ToUpper(request.Titulo[0]) + request.Titulo.Substring(1);
-
-                // Obtenemos la película por ID para verificar si necesitamos actualizarla.
                 Peliculas pelicula = await _query.GetPeliculaById(peliculaId);
-                if (pelicula == null)
+                if (pelicula != null)
                 {
-                    throw new NotFoundException("No existe ninguna película con ese Id.");
-                }
+                    if (await VerifySameName(request.Titulo, peliculaId))
+                    {
+                        throw new ConflictException("Ya existe una película con ese nombre.");
+                    }
+                    if (!await VerifyGenero(request.Genero))
+                    {
+                        throw new NotFoundException("No existe ningún género con ese Id.");
+                    }
+                    pelicula = await _command.UpdatePelicula(peliculaId, request);
+                    return await _peliculaMapper.GeneratePeliculaResponse(pelicula);
 
-                // Verificar si el nombre ya existe y si es diferente al nombre actual de la película.
-                if (pelicula.Titulo != request.Titulo && await VerifySameName(request.Titulo, peliculaId))
+                }
+                else
                 {
-                    throw new ConflictException("Ya existe una película con ese nombre.");
+                    { throw new NotFoundException("No existe ninguna película con ese Id."); }
                 }
-
-                // Verificar que el género exista si se proporciona un nuevo género.
-                if (request.Genero.HasValue && request.Genero.Value > 0 && !await VerifyGenero(request.Genero.Value))
-                {
-                    throw new NotFoundException("No existe ningún género con ese Id.");
-                }
-
-                // Actualizar la película con el método de comando que maneja las propiedades de manera condicional.
-                pelicula = await _command.UpdatePelicula(peliculaId, request);
-
-                // Mapear la película actualizada a PeliculaResponse.
-                return await _peliculaMapper.GeneratePeliculaResponse(pelicula);
             }
             catch (SyntaxErrorException ex)
             {
@@ -97,19 +90,18 @@ namespace Application.UseCases
             {
                 throw new ConflictException("Error: " + ex.Message);
             }
+
         }
 
         //Private methods
 
         private bool VerifyInt(int entero)
         {
-            // Convertimos el entero a string y luego comprobamos que no tenga espacios
             var enteroString = entero.ToString();
             if (string.IsNullOrWhiteSpace(enteroString) || enteroString.Any(char.IsWhiteSpace))
             {
                 throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
             }
-            // Si no es un número o contiene caracteres no deseados, retornamos false
             if (!int.TryParse(enteroString, out _) || enteroString.Any(ch => !char.IsDigit(ch)))
             {
                 throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");

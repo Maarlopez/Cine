@@ -45,7 +45,7 @@ namespace TP2_REST.Controllers
         /// </summary>
         /// <param name="Id">El identificador de la pelicula</param>
         /// <returns>Película actualizada</returns>
-        [HttpPatch("{Id}")]
+        [HttpPut("{Id}")]
         [ProducesResponseType(typeof(PeliculaResponse), 200)]
         [ProducesResponseType(typeof(BadRequest), 400)]
         [ProducesResponseType(typeof(BadRequest), 404)]
@@ -67,8 +67,9 @@ namespace TP2_REST.Controllers
             }
             catch (ConflictException ex)
             {
-                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 409 };
             }
+
         }
     }
 }
