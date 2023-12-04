@@ -7,7 +7,7 @@ using BadRequest = Application.Response.BadRequest;
 
 namespace TP2_REST.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class PeliculaController : ControllerBase
     {

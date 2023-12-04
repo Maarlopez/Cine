@@ -51,4 +51,10 @@ public class PeliculasQuery : IPeliculasQuery
             throw new ConflictException("Error en la base de datos: Problema al obtener las películas.");
         }
     }
+
+    public async Task<bool> PeliculaExists(int peliculaId)
+    {
+        return await _context.Peliculas.AnyAsync(p => p.PeliculaId == peliculaId);
+    }
+
 }

@@ -7,7 +7,7 @@ using BadRequest = Application.Response.BadRequest;
 
 namespace TP2_REST.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class FuncionController : ControllerBase
     {
@@ -39,6 +39,7 @@ namespace TP2_REST.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(FuncionResponse), 201)]
         [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
         [ProducesResponseType(typeof(BadRequest), 409)]
         public async Task<IActionResult> RegisterFuncion(FuncionRequest request)
         {
@@ -59,6 +60,19 @@ namespace TP2_REST.Controllers
             {
                 return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
             }
+            catch (PeliculaNotFoundException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
+            }
+            catch (SalaNotFoundException ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Ocurrió un error interno del servidor.");
+            }
+
         }
 
 

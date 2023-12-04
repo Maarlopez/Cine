@@ -170,181 +170,181 @@ namespace Infrastructure.Migrations
                         {
                             PeliculaId = 1,
                             GeneroId = 4,
-                            Poster = "https://i.imgur.com/Qdd6klb.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/1.jpg",
                             Sinopsis = "El cirujano Danny decide contratar a su ayudante Katherine, una madre soltera con hijos, para que finjan ser su familia. Su intención es demostrarle a Palmer que su amor por ella es tan grande que está a punto de divorciarse de su mujer.",
                             Titulo = "Una esposa de mentira",
-                            Trailer = "https://www.youtube.com/watch?v=xuZnmYjAKww"
+                            Trailer = "https://www.youtube.com/embed/xuZnmYjAKww?si=B_1rowxqE-bt2Azm"
                         },
                         new
                         {
                             PeliculaId = 2,
                             GeneroId = 3,
-                            Poster = "https://i.imgur.com/xz1PBy0.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/3.jpg",
                             Sinopsis = "En un futuro prohibido tener más de un hijo, seis hermanas fingen ser la misma para escapar del Gobierno y buscar a la séptima hermana desaparecida.",
                             Titulo = "¿Qué le pasó a Lunes?",
-                            Trailer = "https://www.youtube.com/watch?v=sRIYLZJqbEY"
+                            Trailer = "https://www.youtube.com/embed/sRIYLZJqbEY?si=dlF8jxhUUyv8ve44"
                         },
                         new
                         {
                             PeliculaId = 3,
                             GeneroId = 1,
-                            Poster = "https://i.imgur.com/gWGCYdr.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/2.jpg",
                             Sinopsis = "Un exagente de la DEA regresa a la acción para salvar a su hija y a su nueva ciudad de un psicópata que vende drogas.",
                             Titulo = "Línea de fuego",
-                            Trailer = "https://www.youtube.com/watch?v=zHrnF621ggQ"
+                            Trailer = "https://www.youtube.com/embed/zHrnF621ggQ?si=1W12NksFbJoHon5h"
                         },
                         new
                         {
                             PeliculaId = 4,
                             GeneroId = 5,
-                            Poster = "https://i.imgur.com/Q2eeSOC.png",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/12.png",
                             Sinopsis = "Un documental sobre la ciberseguridad y se sumerge en uno de los mayores ciberataques, el objetivo era apropiarse de casi mil millones de dólares. En 2016, el Banco Central de Bangladés sufrió un robo de 81 millones de dólares.",
                             Titulo = "El robo de mil millones de dolares",
-                            Trailer = "https://www.youtube.com/watch?v=4zv56MUXgw8"
+                            Trailer = "https://www.youtube.com/embed/4zv56MUXgw8?si=LTcF5VcgHoJPHXIx"
                         },
                         new
                         {
                             PeliculaId = 5,
                             GeneroId = 4,
-                            Poster = "https://i.imgur.com/VJGTWKG.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/20.jpg",
                             Sinopsis = "Cady Heron ha sido criada en la selva africana. Sus padres zoólogos intentaron educarla en las leyes de la naturaleza, pero al cumplir quince años, debe ir al instituto y adaptarse a su nueva vida en Illinois.",
                             Titulo = "Mean Girls",
-                            Trailer = "https://www.youtube.com/watch?v=oDU84nmSDZY"
+                            Trailer = "https://www.youtube.com/embed/oDU84nmSDZY?si=MVVMaEMdESg8o1Kb"
                         },
                         new
                         {
                             PeliculaId = 6,
                             GeneroId = 10,
-                            Poster = "https://i.imgur.com/HKpufD5.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/4.jpg",
                             Sinopsis = "M3GAN es una maravilla de la inteligencia artificial, una muñeca realista diseñada para ser la mejor compañera de los niños. Puede escuchar, observar y aprender, convirtiéndose en amiga, profesora, compañera de juegos y protectora.",
                             Titulo = "M3GAN",
-                            Trailer = "https://www.youtube.com/watch?v=1vTbhymPSA4"
+                            Trailer = "https://www.youtube.com/embed/1vTbhymPSA4?si=EM1PU2IF8LLh4F6u"
                         },
                         new
                         {
                             PeliculaId = 7,
                             GeneroId = 1,
-                            Poster = "https://i.imgur.com/tGJwzGc.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/5.jpg",
                             Sinopsis = "Los héroes de Marvel deben reunirse para deshacer las acciones de Thanos y restaurar el equilibrio en el universo.",
                             Titulo = "Avengers: Endgame",
-                            Trailer = "https://www.youtube.com/watch?v=PyakRSni-c0"
+                            Trailer = "https://www.youtube.com/embed/PyakRSni-c0?si=0OV3qUOuugoO7CRe"
                         },
                         new
                         {
                             PeliculaId = 8,
                             GeneroId = 9,
-                            Poster = "https://i.imgur.com/rRAMOZR.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/8.jpg",
                             Sinopsis = "Un cómico fallido se sumerge en la locura y se convierte en el infame villano Joker en Gotham City.",
                             Titulo = "Joker",
-                            Trailer = "https://www.youtube.com/watch?v=zAGVQLHvwOY"
+                            Trailer = "https://www.youtube.com/embed/zAGVQLHvwOY?si=eI_zYZiB0ZXTV5O9"
                         },
                         new
                         {
                             PeliculaId = 9,
                             GeneroId = 7,
-                            Poster = "https://i.imgur.com/U6aTYJU.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/16.jpg",
                             Sinopsis = "Los juguetes de Andy, encabezados por Woody el vaquero, cobran vida cuando nadie está mirando. Pero cuando un nuevo juguete, Buzz Lightyear, llega al grupo, Woody se siente amenazado y se embarcan en una aventura para regresar a casa.",
                             Titulo = "Toy Story",
-                            Trailer = "https://www.youtube.com/watch?v=v-PjgYDrg70"
+                            Trailer = "https://www.youtube.com/embed/v-PjgYDrg70?si=72kWW7Tu48CXLl-y"
                         },
                         new
                         {
                             PeliculaId = 10,
                             GeneroId = 6,
-                            Poster = "https://i.imgur.com/333XNA8.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/14.jpg",
                             Sinopsis = "Un banquero es condenado por un asesinato que no cometió y pasa décadas en la prisión de Shawshank, donde forma una amistad única con otro recluso.",
                             Titulo = "The Shawshank Redemption",
-                            Trailer = "https://www.youtube.com/watch?v=6hB3S9bIaco"
+                            Trailer = "https://www.youtube.com/embed/6hB3S9bIaco?si=LpxP7ydPBl8ZP1DD"
                         },
                         new
                         {
                             PeliculaId = 11,
                             GeneroId = 8,
-                            Poster = "https://i.imgur.com/Yo52ZWJ.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/9.jpg",
                             Sinopsis = "Un pianista y una actriz en ciernes se enamoran en Los Ángeles mientras persiguen sus sueños artísticos.",
                             Titulo = "La La Land",
-                            Trailer = "https://www.youtube.com/watch?v=0pdqf4P9MB8"
+                            Trailer = "https://www.youtube.com/embed/0pdqf4P9MB8?si=Ir5WyILQ-a52fUJ_"
                         },
                         new
                         {
                             PeliculaId = 12,
                             GeneroId = 5,
-                            Poster = "https://i.imgur.com/ACXFboh.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/10.jpg",
                             Sinopsis = "Este documental revela la verdad detrás de la cautividad de las orcas en parques acuáticos y la peligrosidad de mantenerlas en cautiverio.",
                             Titulo = "Blackfish",
-                            Trailer = "https://www.youtube.com/watch?v=fLOeH-Oq_1Y"
+                            Trailer = "https://www.youtube.com/embed/fLOeH-Oq_1Y?si=lIAPr6j9_Rc6HN4_"
                         },
                         new
                         {
                             PeliculaId = 13,
                             GeneroId = 2,
-                            Poster = "https://i.imgur.com/zFvBmAK.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/11.jpg",
                             Sinopsis = "El intrépido arqueólogo Indiana Jones se embarca en una búsqueda para encontrar el Santo Grial antes que los nazis.",
                             Titulo = "Indiana Jones and the Last Crusade",
-                            Trailer = "https://www.youtube.com/watch?v=a6JB2suJYHM"
+                            Trailer = "https://www.youtube.com/embed/a6JB2suJYHM?si=p1jpxsFtBUxDlHec"
                         },
                         new
                         {
                             PeliculaId = 14,
                             GeneroId = 2,
-                            Poster = "https://i.imgur.com/1oE0Ud8.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/7.jpg",
                             Sinopsis = "Un científico descubre una forma de viajar al centro de la Tierra y se embarca en una emocionante aventura subterránea junto a su sobrino y un guía local.",
                             Titulo = "Viaje al centro de la tierra",
-                            Trailer = "https://www.youtube.com/watch?v=ytDcArTr0CI"
+                            Trailer = "https://www.youtube.com/embed/ytDcArTr0CI?si=oLr3k3JJJnzDxJt7"
                         },
                         new
                         {
                             PeliculaId = 15,
                             GeneroId = 2,
-                            Poster = "https://i.imgur.com/xwJNL4Z.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/19.jpg",
                             Sinopsis = "Un grupo de personas queda atrapado en una isla donde se han creado dinosaurios clonados y deben luchar por su supervivencia.",
                             Titulo = "Jurassic Park",
-                            Trailer = "https://www.youtube.com/watch?v=lc0UehYemQA"
+                            Trailer = "https://www.youtube.com/embed/lc0UehYemQA?si=AqKnMQbCu6-z9ksl"
                         },
                         new
                         {
                             PeliculaId = 16,
                             GeneroId = 10,
-                            Poster = "https://i.imgur.com/vG8P2jY.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/6.jpg",
                             Sinopsis = "Basada en hechos reales, una familia experimenta fenómenos paranormales en su nueva casa y busca ayuda de investigadores paranormales.",
                             Titulo = "El Conjuro",
-                            Trailer = "https://www.youtube.com/watch?v=k10ETZ41q5o"
+                            Trailer = "https://www.youtube.com/embed/k10ETZ41q5o?si=wcOGoxAW75KvvSXN"
                         },
                         new
                         {
                             PeliculaId = 17,
                             GeneroId = 9,
-                            Poster = "https://i.imgur.com/lYGE3LJ.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/13.jpg",
                             Sinopsis = "Un hombre se convierte en el principal sospechoso cuando su esposa desaparece y las evidencias sugieren que él podría estar involucrado.",
                             Titulo = "Gone Girl",
-                            Trailer = "https://www.youtube.com/watch?v=2-_-1nJf8Vg"
+                            Trailer = "https://www.youtube.com/embed/2-_-1nJf8Vg?si=NSvUWL3POqqQcO1H"
                         },
                         new
                         {
                             PeliculaId = 18,
                             GeneroId = 8,
-                            Poster = "https://i.imgur.com/ZrRH8z5.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/15.jpg",
                             Sinopsis = "La historia de personajes cuyas vidas se entrelazan en la Francia del siglo XIX, luchando por la justicia y la redención.",
                             Titulo = "Les Misérables",
-                            Trailer = "https://www.youtube.com/watch?v=IuEFm84s4oI"
+                            Trailer = "https://www.youtube.com/embed/IuEFm84s4oI?si=ub4HSHstEu7Ks4ey"
                         },
                         new
                         {
                             PeliculaId = 19,
                             GeneroId = 5,
-                            Poster = "https://i.imgur.com/xRZC4Ji.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/17.jpg",
                             Sinopsis = "Este documental sigue la epopeya de los pingüinos emperadores mientras luchan por sobrevivir y criar a sus crías en la Antártida.",
                             Titulo = "March of the Penguins",
-                            Trailer = "https://www.youtube.com/watch?v=ohL8rF_jluA"
+                            Trailer = "https://www.youtube.com/embed/ohL8rF_jluA?si=mfdXrh9HUpahNLZu"
                         },
                         new
                         {
                             PeliculaId = 20,
                             GeneroId = 6,
-                            Poster = "https://i.imgur.com/LeQf3gP.jpg",
+                            Poster = "https://raw.githubusercontent.com/Maarlopez/imagenes/main/18.jpg",
                             Sinopsis = "Matt Turner, un hombre de negocios estadounidense que vive en Berlín y que se encuentra en una carrera contrarreloj para salvar a su familia y su propia vida.",
                             Titulo = "Contrarreloj",
-                            Trailer = "https://www.youtube.com/watch?v=T7HlHI4S-MY"
+                            Trailer = "https://www.youtube.com/embed/T7HlHI4S-MY?si=nwEqiLtSYPzexW8x"
                         });
                 });
 

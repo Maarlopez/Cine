@@ -57,7 +57,7 @@ namespace Application.UseCases
                 {
                     throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
                 }
-                request.Titulo = char.ToUpper(request.Titulo[0]) + request.Titulo.Substring(1);
+                //request.Titulo = char.ToUpper(request.Titulo[0]) + request.Titulo.Substring(1);
                 Peliculas pelicula = await _query.GetPeliculaById(peliculaId);
                 if (pelicula != null)
                 {
@@ -119,6 +119,10 @@ namespace Application.UseCases
         {
             List<Generos> listaGeneros = await _serviceGenero.GetGeneros();
             return (listaGeneros.Any(g => g.GeneroId == generoId));
+        }
+        public async Task<bool> PeliculaExists(int peliculaId)
+        {
+            return await _query.PeliculaExists(peliculaId);
         }
     }
 }

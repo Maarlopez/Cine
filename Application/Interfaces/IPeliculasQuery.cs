@@ -6,5 +6,6 @@ namespace Application.Interfaces
     {
         Task<Peliculas> GetPeliculaById(int peliculaId);
         Task<List<Peliculas>> GetPeliculas();
+        Task<bool> PeliculaExists(int peliculaId);
     }
 }

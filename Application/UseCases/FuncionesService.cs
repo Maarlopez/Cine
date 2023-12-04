@@ -28,11 +28,12 @@ namespace Application.UseCases
         public async Task<FuncionResponse> RegisterFuncion(FuncionRequest request)
         {
             // Validación de existencia de película
-            var pelicula = await _peliculaService.GetPeliculaById(request.Pelicula);
-            if (pelicula == null)
+            //var pelicula = await _peliculaService.GetPeliculaById(request.Pelicula);
+            if (!await _peliculaService.PeliculaExists(request.Pelicula))
             {
                 throw new PeliculaNotFoundException("No existe la película.");
             }
+
 
             // Validación de existencia de sala
             if (!await _salaService.SalaExists(request.Sala))

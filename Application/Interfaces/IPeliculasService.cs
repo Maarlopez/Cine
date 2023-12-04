@@ -7,5 +7,6 @@ namespace Application.Interfaces
     {
         public Task<PeliculaResponse> GetPeliculaById(int peliculaId);
         public Task<PeliculaResponse> UpdatePelicula(int peliculaId, PeliculaRequest request);
+        Task<bool> PeliculaExists(int peliculaId);
     }
 }
