@@ -107,5 +107,16 @@ namespace Infrastructure.Query
                 throw new ConflictException("Error en la base de datos: Problema con el titulo.");
             }
         }
+
+        public async Task<bool> VerifyIfSalaisEmpty(DateTime fecha, TimeSpan horario, int salaId)
+        {
+            var inicio = fecha + horario;
+            var fin = inicio + TimeSpan.FromHours(2);
+
+            return !await _context.Funciones
+                .AnyAsync(f => f.SalaId == salaId &&
+                               ((f.Fecha + f.Horario) < fin) &&
+                               ((f.Fecha + f.Horario + TimeSpan.FromHours(2)) > inicio));
+        }
     }
 }

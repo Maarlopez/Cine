@@ -28,7 +28,6 @@ namespace Application.UseCases
         public async Task<FuncionResponse> RegisterFuncion(FuncionRequest request)
         {
             // Validación de existencia de película
-            //var pelicula = await _peliculaService.GetPeliculaById(request.Pelicula);
             if (!await _peliculaService.PeliculaExists(request.Pelicula))
             {
                 throw new PeliculaNotFoundException("No existe la película.");
@@ -41,6 +40,7 @@ namespace Application.UseCases
                 throw new SalaNotFoundException("No existe la sala.");
             }
 
+             // Validación de formato de horario y rango de horas
             if (!DateTime.TryParse(request.Fecha, out DateTime date))
             {
                 throw new SyntaxErrorException("Formato érroneo para la fecha, pruebe ingresando dd/mm/aaaa");
@@ -118,152 +118,115 @@ namespace Application.UseCases
 
         public async Task<List<FuncionGetResponse>> GetFuncionesByTituloFechaOGenero(string? titulo, string? fecha, int genero)
         {
-            try
+            DateTime date;
+            List<Funciones> listFunciones = new List<Funciones>();
+
+            if (!string.IsNullOrEmpty(fecha))
             {
-                DateTime date;
-                List<Funciones> funcionesByFecha = new();
-                List<Funciones> funcionesByTitulo = new();
-                List<Funciones> listFunciones = new();
-                List<Funciones> funcionesByGenero = new();
-
-                if (titulo == null && fecha == null && genero == 0)
+                if (!DateTime.TryParse(fecha, out date))
                 {
-                    listFunciones = await _query.GetFunciones();
+                    // Lanza la excepción directamente si el parseo falla.
+                    throw new SyntaxErrorException("Formato erróneo de fecha.");
                 }
-                if (fecha != null)
-                {
-                    if (!DateTime.TryParse(fecha, out date))
-                    {
-                        throw new SyntaxErrorException("Formato érroneo de fecha.");
-                    }
-
-                    listFunciones = await _query.GetFuncionesByFecha(date);
-
-                    if (listFunciones.Count() == 0 && titulo != "")
-                    {
-                        return await _funcionMapper.GenerateListFuncionGetResponse(listFunciones);
-                    }
-                }
-                if (titulo != null)
-                {
-                    funcionesByTitulo = await _query.GetFuncionesByTitulo(titulo);
-                    if (listFunciones.Count() > 0)
-                    { listFunciones = GroupData(listFunciones, funcionesByTitulo); }
-                    else
-                    { listFunciones = funcionesByTitulo; }
-                }
-                if (genero != 0)
-                {
-                    funcionesByGenero = await _query.GetFuncionByGenero(genero);
-                    if (listFunciones.Count() > 0)
-                    {
-                        listFunciones = GroupData(listFunciones, funcionesByGenero);
-                    }
-                    else
-                    {
-                        listFunciones = funcionesByGenero;
-                    }
-
-                }
-                return await _funcionMapper.GenerateListFuncionGetResponse(listFunciones);
+                listFunciones = await _query.GetFuncionesByFecha(date);
             }
-            catch (SyntaxErrorException ex)
+
+            // Añade las condiciones para titulo y genero aquí.
+            if (!string.IsNullOrEmpty(titulo))
             {
-                throw new SyntaxErrorException("Error en la sintaxis ingresada para la fecha: " + ex.Message);
+                listFunciones.AddRange(await _query.GetFuncionesByTitulo(titulo));
             }
+
+            if (genero != 0)
+            {
+                listFunciones.AddRange(await _query.GetFuncionByGenero(genero));
+            }
+
+            // Si no se han aplicado filtros anteriores, devuelve todas las funciones.
+            if (string.IsNullOrEmpty(titulo) && genero == 0 && string.IsNullOrEmpty(fecha))
+            {
+                listFunciones = await _query.GetFunciones();
+            }
+
+            // Filtra duplicados si es necesario y devuelve los resultados a través del mapper.
+            var filteredListFunciones = listFunciones.Distinct().ToList();
+            return await _funcionMapper.GenerateListFuncionGetResponse(filteredListFunciones);
         }
 
         public async Task<FuncionResponse> GetFuncionResponseById(int funcionId)
         {
-            try
-            {
-                if (!VerifyInt(funcionId)) { throw new SyntaxErrorException(); }
-                Funciones funcion = await GetFuncionById(funcionId);
-                return await _funcionMapper.GenerateFuncionResponse(funcion);
-            }
-            catch (ResourceNotFoundException ex)
-            {
-                throw new ResourceNotFoundException(ex.Message);
-            }
-            catch (SyntaxErrorException)
+            if (!VerifyInt(funcionId))
             {
                 throw new SyntaxErrorException("Error en la sintaxis del Id, pruebe con un entero.");
             }
+
+            Funciones funcion = await _query.GetFuncionById(funcionId);
+            if (funcion == null)
+            {
+                throw new ResourceNotFoundException($"No se encontró ninguna función con el Id {funcionId}.");
+            }
+
+            return await _funcionMapper.GenerateFuncionResponse(funcion);
         }
 
         public async Task<Funciones> GetFuncionById(int funcionId)
         {
-            try
+            Funciones funcion = await _query.GetFuncionById(funcionId);
+            if (funcion == null)
             {
-                Funciones funcion = await _query.GetFuncionById(funcionId);
-                if (funcion != null)
-                {
-                    return funcion;
-                }
-                else
-                {
-                    throw new SyntaxErrorException("No existe funcion con ese Id.");
-                }
+                throw new ResourceNotFoundException($"No se encontró ninguna función con el Id {funcionId}.");
             }
-            catch (ResourceNotFoundException ex)
-            {
-                throw new ResourceNotFoundException("Error en la búsqueda: " + ex.Message);
-            }
+
+            return funcion;
         }
 
         public async Task<CantidadTicketsResponse> GetCantidadTickets(int funcionId)
         {
-            try
+            if (!VerifyInt(funcionId))
             {
-                if (!VerifyInt(funcionId))
-                {
-                    throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
-                }
-                Funciones funcion = await _query.GetFuncionById(funcionId);
-                if (funcion != null)
-                {
-                    return await _ticketMapper.GetCantidadTicketResponse(funcion.Sala.Capacidad, funcion.Tickets.Count());
-                }
-                else
-                {
-                    throw new FuncionNotFoundException("No se encontró ninguna función con ese Id.");
-                }
-            }
-            catch (SyntaxErrorException ex)
-            {
-                throw new SyntaxErrorException("Error en la sintaxis: " + ex.Message);
-            }
-            catch (ResourceNotFoundException ex)
-            {
-                throw new ResourceNotFoundException("Error en la búsqueda: " + ex.Message);
+                throw new SyntaxErrorException("Formato erróneo para el Id, pruebe con un entero.");
             }
 
-        }
-
-        private List<Funciones> GroupData(List<Funciones> listaPrincipal, List<Funciones> listaSecundaria)
-        {
-            List<Funciones> lista = new();
-            foreach (Funciones funcion in listaSecundaria)
+            Funciones funcion = await _query.GetFuncionById(funcionId);
+            if (funcion == null)
             {
-                if (listaPrincipal.Any(f => f.FuncionId == funcion.FuncionId && f.Fecha.Date == funcion.Fecha.Date && f.Pelicula.GeneroId == funcion.Pelicula.GeneroId))
-                { lista.Add(funcion); }
+                throw new FuncionNotFoundException("No se encontró ninguna función con ese Id.");
             }
-            return lista;
+
+            return await _ticketMapper.GetCantidadTicketResponse(funcion.Sala.Capacidad, funcion.Tickets.Count());
         }
 
         //Extras
-        private async Task<bool> VerifyIfSalaisEmpty(DateTime fecha, TimeSpan horario, int salaId)
+        public async Task<bool> VerifyIfSalaisEmpty(DateTime fecha, TimeSpan horario, int salaId)
         {
             List<Funciones> listFunciones = await _query.GetFunciones();
-            TimeSpan LapsoHorario = TimeSpan.FromHours(2) + TimeSpan.FromMinutes(30);
-            return !(listFunciones.Any(f =>
-               (f.SalaId == salaId && f.Fecha == fecha) &&
-               (Math.Abs((horario - f.Horario).Ticks) <= LapsoHorario.Ticks ||
-                Math.Abs((f.Horario - horario).Ticks) <= LapsoHorario.Ticks)));
+            TimeSpan duracionFuncion = TimeSpan.FromHours(2) + TimeSpan.FromMinutes(30);
+
+            var inicioNuevaFuncion = fecha + horario;
+            var finNuevaFuncion = inicioNuevaFuncion + duracionFuncion;
+
+            foreach (var funcion in listFunciones)
+            {
+                if (funcion.SalaId != salaId || funcion.Fecha.Date != fecha.Date)
+                {
+                    continue;
+                }
+
+                var inicioFuncionExistente = funcion.Fecha + funcion.Horario;
+                var finFuncionExistente = inicioFuncionExistente + duracionFuncion;
+
+                // Verifica si hay superposición
+                if (inicioNuevaFuncion < finFuncionExistente && finNuevaFuncion > inicioFuncionExistente)
+                {
+                    return false; // Hay superposición
+                }
+            }
+            return true; // No hay superposición
         }
         private bool VerifyInt(int entero)
         {
-            return int.TryParse(entero.ToString(), out entero);
+            // Ejemplo de validación ajustada para verificar que el ID no sea negativo
+            return entero >= 0;
         }
     }
 }

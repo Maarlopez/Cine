@@ -15,6 +15,10 @@ namespace Infrastructure.Query
             _context = context;
         }
 
+        public async Task<bool> VerifyGenero(int generoId)
+        {
+            return await _context.Generos.AnyAsync(g => g.GeneroId == generoId);
+        }
         public async Task<List<Generos>> GetGeneros()
         {
             try

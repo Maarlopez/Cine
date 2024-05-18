@@ -12,5 +12,6 @@ namespace Application.Interfaces
         Task<FuncionResponse> GetFuncionResponseById(int funcionId);
         Task<FuncionDelete> DeleteFuncion(int funcionId);
         Task<CantidadTicketsResponse> GetCantidadTickets(int funcionId);
+        Task<bool> VerifyIfSalaisEmpty(DateTime fecha, TimeSpan horario, int salaId);
     }
 }

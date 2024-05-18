@@ -11,7 +11,7 @@
 
         // Relaciones de navegación
         public Peliculas Pelicula { get; set; }
-        public Salas Sala { get; set; }
+        public Salas Sala { get; set; } // la entidad salas
         public ICollection<Tickets> Tickets { get; set; }
     }
 }

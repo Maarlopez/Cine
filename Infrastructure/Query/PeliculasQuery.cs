@@ -57,4 +57,13 @@ public class PeliculasQuery : IPeliculasQuery
         return await _context.Peliculas.AnyAsync(p => p.PeliculaId == peliculaId);
     }
 
+    public async Task<bool> VerifyGenero(int generoId)
+    {
+        return await _context.Generos.AnyAsync(g => g.GeneroId == generoId);
+    }
+
+    public async Task<bool> VerifySameName(string tituloPelicula, int peliculaId)
+    {
+        return await _context.Peliculas.AnyAsync(p => p.Titulo.ToLower() == tituloPelicula.ToLower() && p.PeliculaId != peliculaId);
+    }
 }
